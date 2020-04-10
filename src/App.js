@@ -13,11 +13,11 @@ export default function App() {
 
   const renderExercises = () => {
     let ret = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 100; i++) {
       ret.push(
         <Field key={i} name={`Exercise${i}`} initialValue={i}>
           {({ form, state, props, mutators }) => {
-            return <React.Fragment>{state.value}</React.Fragment>
+            return <React.Fragment><div>{state.value}</div></React.Fragment>
           }}
         </Field>
       );
