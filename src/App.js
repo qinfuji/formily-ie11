@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SchemaForm,
   InternalField as Field,
@@ -8,13 +8,16 @@ import {
 const actions = createFormActions();
 
 export default function App() {
+
+  const [started, setStarted] = useState(false)
+
   const renderExercises = () => {
     let ret = [];
-    for (let i = 0; i < 102; i++) {
+    for (let i = 0; i < 2; i++) {
       ret.push(
         <Field key={i} name={`Exercise${i}`} initialValue={i}>
           {({ form, state, props, mutators }) => {
-            return <div>{state.value}</div>;
+            return <React.Fragment>{state.value}</React.Fragment>
           }}
         </Field>
       );
@@ -23,7 +26,7 @@ export default function App() {
   };
 
   return (
-    <SchemaForm actions={actions} schema={{ type: "object" }}>
+    !started ? <button onClick={() => setStarted(true)}> 开始</button> : <SchemaForm actions={actions} schema={{ type: "object" }}>
       {renderExercises()}
     </SchemaForm>
   );
